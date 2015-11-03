@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+	<head>
+		<!-- Title -->
+		<title> Their Opportunity - Registration </title>
+		<!-- Bootstrap CSS-->
+    	<link href="/css/bootstrap.min.css" rel="stylesheet">
+    	<link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+         <link href="/css/index.css" rel="stylesheet">
+    	<!-- jQuery -->
+    	<script src="/js/jquery-1.11.3.min.js"></script>
+	
+		<!-- Bootstrap JS -->
+    	<script src="/js/bootstrap.min.js"></script>
+
+    	<!-- Angular JS -->
+		<script type="text/javascript" src="/js/angular.min.js"></script>
+
+		<!-- Load jQuery UI CSS  -->
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+		<!-- Load jQuery UI Main JS  -->
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+    	<!-- App.js renamed to angular.js -->
+    	<script src="/js/angular.js"></script>
+    	<script type="text/javascript" src="/js/promise-tracker.js"></script>
+	</head>
+	<body class="container">
+		<h1 align="center"> Terms and Conditions </h1>
+		
+		<p> By agreeing to the terms and conditions you agree to the following:
+		<ul class="list-group">
+		  <li class="list-group-item">I will be taking part in the sport/recreation activity of my choice submitted in this application.</li>
+		  <li class="list-group-item">To complete my Give Back within 3 months of receiving funding.</li>
+		  <li class="list-group-item">Funding will be directed in my child&#39;s name to the sport/club or recreation activity chosen in this application.</li>
+		  <li class="list-group-item">At the discretion of Their Opportunity, funds will be disbursed which may include full or part funding.  All eligibility is based on funding availability.</li>
+		</ul>
+		<p> The Give Back is a mandatory component to Their Opportunity’s program. You must agree to the Give Back otherwise you will not qualify for funding. </p>
+		<div style="margin-left: 20px">   <input data-ng-click="support=true" class="agree" type="radio" name="sexy" value="Yes"/>   I agree to the above terms and conditions. <br> <input data-ng-click="support=false" class="agree" type="radio" name="sexy" value="No"/>   I do not agree to the above terms and conditions. 
+		</div>
+		<br> 
+		 <div class="form-group">
+		  <label for="comment">Special Considerations and Additional Comments:</label> <!-- place into description variable -->
+		  <textarea class="form-control" rows="5" id="comment"></textarea>
+		</div>
+	 	<div align="center">
+	  			<ul class="pagination">
+	    			<li><a href="#"> Child Info <span class="sr-only">(current)</span></a></li>
+	    			<li><a href="#"> Household Info <span class="sr-only">(current)</span></a></li>
+	    			<li ><a href="#"> Sport Registration <span class="sr-only">(current)</span></a></li>
+	    			<li><a href="#"> Give Back <span class="sr-only">(current)</span></a></li>
+	    			<li class="active"><a href="#"> Terms and Conditions <span class="sr-only">(current)</span></a></li>
+	  			</ul>
+		    </div>
+	 	<nav>
+	  		<ul class="pager">
+	   			<li class="previous"><a href="giveback.html"><span aria-hidden="true">&larr;</span> Back </a></li>
+	    		<li class="next" data-ng-hide="support==false" id="nextPage"><a href="#">Submit <span aria-hidden="true">&rarr;</span></a></li>
+	  		</ul>
+		</nav>
+	</body>
+	<script>
+		function JSON2CSV(objArray) {
+		    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+
+		    var str = '';
+		    var line = '';
+
+		    if ($("#labels").is(':checked')) {
+		        var head = array[0];
+		        if ($("#quote").is(':checked')) {
+		            for (var index in array[0]) {
+		                var value = index + "";
+		                line += '"' + value.replace(/"/g, '""') + '",';
+		            }
+		        } else {
+		            for (var index in array[0]) {
+		                line += index + ',';
+		            }
+		        }
+
+		        line = line.slice(0, -1);
+		        str += line + '\r\n';
+		    }
+
+		    for (var i = 0; i < array.length; i++) {
+		        var line = '';
+
+		        if ($("#quote").is(':checked')) {
+		            for (var index in array[i]) {
+		                var value = array[i][index] + "";
+		                line += '"' + value.replace(/"/g, '""') + '",';
+		            }
+		        } else {
+		            for (var index in array[i]) {
+		                line += array[i][index] + ',';
+		            }
+		        }
+
+		        line = line.slice(0, -1);
+		        str += line + '\r\n';
+		    }
+		    return str;
+		    
+		}
+
+		function multiCsv(files, callback) {
+		  var results = [];
+		  var error = "";
+		  var filesLength = (files || []).length;
+		  var callbackInvoked = false;
+		  for (var i = 0; i < filesLength; i++) {
+		    (function(url) {
+		      d3.csv(url, function(data) {
+		        if (data === null) {
+		          error += "Error retrieving \"" + url + "\"\n";
+		        } else {
+		          results.push(data);
+		        }
+		        // all files retrieved or an error occurred
+		        if (!callbackInvoked && (error || results.length === filesLength)) {
+		          if (error) {
+		            callback(error, null); // might want to send partial results here
+		          } else {
+		            callback(null, d3.merge(results));
+		          }
+		          callbackInvoked = true;
+		        }
+		      });
+		    })(files[i]);
+		  }
+		}
+
+		$("#nextPage").click(function() {
+			var agree = $(".agree").val();
+
+			if (agree === "Yes") {
+				var region_json = localStorage.getItem("region");
+				var child_json = localStorage.getItem("child");
+				var household_json = localStorage.getItem("household");
+				var sports_json = localStorage.getItem("sports");
+				var giveback_json = localStorage.getItem("giveback");
+
+				var region_csv = JSON2CSV(region_json);
+				var child_csv = JSON2CSV(child_json);
+				var household_csv = JSON2CSV(household_json);
+				var sports_csv = JSON2CSV(sports_json);
+				var giveback_csv = JSON2CSV(giveback_json);
+
+				var csv1 = region_csv.concat(child_csv);
+				var csv2 = csv1.concat(household_csv);
+				var csv3 = csv2.concat(sports_csv);
+				var data = csv3.concat(giveback_csv);
+
+				var csvContent = "data:text/csv;charset=utf-8,"  + escape(data);
+				var encodedUri = encodeURI(csvContent);
+				var link = document.createElement("a");
+				link.setAttribute("href", encodedUri);
+				link.setAttribute("download", "my_data.csv");
+
+				link.click(); // This will download the data file named "my_data.csv".
+
+				window.location.href = "done.html"
+			} else {
+				alert("You must agree to the Terms and Conditions");
+			}
+		});
+	</script>
+</html>

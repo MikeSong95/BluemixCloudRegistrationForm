@@ -1,0 +1,8 @@
+applications:
+- path: .
+  memory: 2048M
+  instances: 1
+  domain: mybluemix.net
+  name: theiroppreg
+  host: theiroppreg
+  disk_quota: 1024M

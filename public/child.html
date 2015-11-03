@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html data-ng-app="myApp">
+	<head>
+		<!-- Title -->
+		<title> Their Opportunity - Registration </title>
+		<!-- Bootstrap CSS-->
+    	<link href="/css/bootstrap.min.css" rel="stylesheet">
+    	<link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+         <link href="/css/index.css" rel="stylesheet">
+    	<!-- jQuery -->
+    	<script src="/js/jquery-1.11.3.min.js"></script>
+	
+		<!-- Bootstrap JS -->
+    	<script src="/js/bootstrap.min.js"></script>
+
+    	<!-- Angular JS -->
+		<script type="text/javascript" src="/js/angular.min.js"></script>
+
+		<!-- Load jQuery UI CSS  -->
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+		<!-- Load jQuery UI Main JS  -->
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+    	<!-- App.js renamed to angular.js -->
+    	<script src="/js/angular.js"></script>
+    	<script type="text/javascript" src="/js/promise-tracker.js"></script>
+		<script>
+			$(document).ready(
+  				/* This is the function that will get executed after the DOM is fully loaded */
+  				function () {
+    				$( ".datepicker" ).datepicker({
+      					changeMonth: true,//this option for allowing user to select month
+      					changeYear: true, //this option for allowing user to select from year range
+      					yearRange: "-100:+0"
+    				});
+  				}
+			);
+		</script>
+	</head>
+	<body class="container" data-ng-controller="childCtrl">
+	    <h1 align="center"> Child Information </h1>
+
+                <span class="label label-danger" id="firstS" style="display:none;">Required!</span>	
+		<p> 1. Child's First Name: <input type="text" id="firstName" class="form-control" placeholder="Name" /> </p> 
+
+		<span class="label label-danger" id="lastS" style="display:none;">Required!</span>
+		<p> 2. Child's Last Name:  <input type="text" id="lastName" class="form-control" placeholder="Name" /> </p>
+		<span class="label label-danger" id="genderS" style="display:none;">Required!</span>
+		<p> 3. Gender:  </p> <div style="margin-left: 20px"> Male <input type="radio" name="sex" class="gender" value="male"> Female <input type="radio" class="gender" name="sex" value="female" >  </div> 
+		<br>
+	        <span class="label label-danger" id="birthS" style="display:none;">Required!</span>
+		<p> 4. Date of Birth: </p>
+		<input  type="text" class="datepicker" id="dob"/> 
+		<br>
+		<br>
+		<span class="label label-danger" id="streetS" style="display:none;">Required!</span>
+		<p> 5. Street Address: <input type="text" id="address" class="form-control" > </p>
+		<span class="label label-danger" id="cityS" style="display:none;">Required!</span>
+		<p> 5. City: <input type="text" id="city" class="form-control" > </p>  
+		<span class="label label-danger" id="stateS" style="display:none;">Required!</span>
+		<p> 6. State/Province: <input type="text" id="state" class="form-control" > </p>
+		<span class="label label-danger" id="zipS" style="display:none;">Required!</span>
+		<p> 6. ZIP Code: <input placeholder="X1X 1X1" type="text" id="zip" class="form-control" > </p>
+		<span class="label label-danger" id="countryS" style="display:none;">Required!</span>
+		<p> 7. Country:  </p> 
+		<select id="country" style="width:200px;" name="country" class="form-control">
+			<option selected="" value=""> All Countries</option>
+			<option value="CA"> Canada</option>
+			<option value="US"> United States</option>
+			<option value="MX"> Mexico </option>
+			<option value="IT"> Italy </option>
+		</select>
+		<br>
+		<span class="label label-danger" id="boardS" style="display:none;">Required!</span>
+		<p> 8. School Region: </p>
+		<form id="schoolboard" action="" >
+	    	<select id="region" name="cars" class="form-control">
+		        <option data-ng-click="changeBoard(0)">Choose Option...</option>
+				<option data-ng-click="changeBoard(1)">Durham Region</option>
+				<option data-ng-click="changeBoard(2)">Greater Toronto Area</option>
+				<option data-ng-click="changeBoard(3)">Hamilton, Burlington, Niagara, and St. Catharines</option>
+				<option data-ng-click="changeBoard(4)">Ottawa</option>
+				<option data-ng-click="changeBoard(5)">Calgary</option>
+			</select>
+	    </form>
+	    
+		<div style="margin-left: 20px">
+		    <form data-ng-show="board==1" action="" >
+				<br>
+		    	<p for="name"> School Board</p>
+				<select name="cars" class="form-control">
+					<option value="Durham">Durham District School Board</option>
+					<option value="saab">Durham Catholic School Board</option>
+					<option value="fiat">Kawartha Pine Ridge District School Board</option>
+				</select>
+				<br>
+			</form>
+				<form data-ng-show="board==2" id="" action="">
+				    	<br>
+				      <p for="name">  School Board</p>
+					<select name="cars" class="form-control">
+						<option value="Durham">Toronto District School Board</option>
+						<option value="saab">Toronto Catholic District School Board</option>
+					    </select>
+					     <br>
+				</form>
+				<form data-ng-show="board==3" id="" action="">
+				    	<br>
+				     <p for="name">  School Board</p>
+					<select name="cars" class="form-control">
+						<option value="Durham">Halton Catholic District School Board</option>
+						<option value="saab">Halton District School Board</option>
+						<option value="fiat">Niagara-Wentworth District School Board</option>
+						<option value="audi">Niagara Catholic District School Board</option>
+					    </select>
+					     <br>
+				</form>
+				<form data-ng-show="board==4" id="" action="">
+				    	<br>
+				      <p for="name">  School Board</p>
+					<select name="cars" class="form-control">
+						<option value="Durham">Ottawa-Carleton District School Board</option>
+						<option value="saab">Ottawa Catholic School Board</option>
+					    </select>
+					     <br>
+				</form>
+				<form data-ng-show="board==5" id="" action="">
+				    	<br>
+				     <p for="name">  School Board</p>
+					<select name="cars" class="form-control">
+						<option value="Durham">Calgary Board of Education</option>
+						<option value="saab">Calgary Catholic School District</option>
+					    </select>
+					     <br>
+				</form>
+		    </form>
+		</div>
+		<div data-ng-show="!board"> <br></div>
+	    	<div align="center">
+  				<ul class="pagination">
+    				<li class="active"><a href="#"> Child Info <span class="sr-only">(current)</span></a></li>
+    				<li><a href="#"> Household Info <span class="sr-only">(current)</span></a></li>
+    				<li><a href="#"> Sport Registration <span class="sr-only">(current)</span></a></li>
+    				<li><a href="#"> Give Back <span class="sr-only">(current)</span></a></li>
+    				<li><a href="#"> Terms and Conditions <span class="sr-only">(current)</span></a></li>
+  				</ul>
+		    </div>
+	 	<nav>
+	  		<ul class="pager">
+	   			<li class="previous"><a href="index.html"><span aria-hidden="true">&larr;</span> Back </a></li>
+	    		<li class="next" id="nextPage"><a href="#" id="nextButton">Next <span aria-hidden="true">&rarr;</span></a></li>
+	  		</ul>
+		</nav> 			
+	</body>
+	<script>
+		function JSON2CSV(objArray) {
+		    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+
+		    var str = '';
+		    var line = '';
+
+		    if ($("#labels").is(':checked')) {
+		        var head = array[0];
+		        if ($("#quote").is(':checked')) {
+		            for (var index in array[0]) {
+		                var value = index + "";
+		                line += '"' + value.replace(/"/g, '""') + '",';
+		            }
+		        } else {
+		            for (var index in array[0]) {
+		                line += index + ',';
+		            }
+		        }
+
+		        line = line.slice(0, -1);
+		        str += line + '\r\n';
+		    }
+
+		    for (var i = 0; i < array.length; i++) {
+		        var line = '';
+
+		        if ($("#quote").is(':checked')) {
+		            for (var index in array[i]) {
+		                var value = array[i][index] + "";
+		                line += '"' + value.replace(/"/g, '""') + '",';
+		            }
+		        } else {
+		            for (var index in array[i]) {
+		                line += array[i][index] + ',';
+		            }
+		        }
+
+		        line = line.slice(0, -1);
+		        str += line + '\r\n';
+		    }
+		    return str;
+		    
+		}
+
+		$("#nextPage").click(function() {
+			var first = $("#firstName").val();
+			var last = $("#lastName").val();
+			var gender = $(".gender").val();
+			var dob = $("#dob").val();
+		    var street = $("#address").val();
+		    var city = $("#city").val();
+		    var state = $("#state").val();
+		    var zip = $("#zip").val();
+		    var country = $("#country").val();
+		    var board = $("#region").val();
+
+		    var data_child = [
+		    	{field: "childFirstName", value: first, required: "Yes"},
+		    	{field: "childLastName", value: last, required: "Yes"},
+		    	{field: "childGender", value: gender, required: "Yes"},
+		    	{field: "childDateOfBirth", value: dob, required: "Yes"},
+		    	{field: "childStreet", value: street, required: "Yes"},
+		    	{field: "childCity", value: city, required: "Yes"},
+		    	{field: "childState", value: state, required: "Yes"},
+		    	{field: "childZip", value: zip, required: "Yes"},
+		    	{field: "childCountry", value: country, required: "Yes"},
+		    	{field: "childSchoolBoard", value: board, required: "Yes"},
+		    ]
+
+		    if (country !== "Choose Option...") {
+				if (first && last && dob && gender && street && city && state && zip && country && board) {
+					var json_childData = JSON.stringify(data_child);
+					var fields = ['Parameter', 'Value'];
+					console.log(json_childData);
+
+					var data = JSON2CSV(json_childData);
+					console.log(data);
+
+					localStorage.setItem("child", json_childData);
+
+					window.location.href = "household.html";
+				} else {
+					alert("Please enter all fields.");
+				}
+			} else {
+				alert("Please enter all fields.");
+			}
+		});
+	</script>
+</html>

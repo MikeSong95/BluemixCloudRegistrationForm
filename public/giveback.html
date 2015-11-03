@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+	<head>
+		<!-- Title -->
+		<title> Their Opportunity - Registration </title>
+		<!-- Bootstrap CSS-->
+    	<link href="/css/bootstrap.min.css" rel="stylesheet">
+    	<link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+         <link href="/css/index.css" rel="stylesheet">
+    	<!-- jQuery -->
+    	<script src="/js/jquery-1.11.3.min.js"></script>
+	
+		<!-- Bootstrap JS -->
+    	<script src="/js/bootstrap.min.js"></script>
+
+    	<!-- Angular JS -->
+		<script type="text/javascript" src="/js/angular.min.js"></script>
+
+		<!-- Load jQuery UI CSS  -->
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+		<!-- Load jQuery UI Main JS  -->
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+    	<!-- App.js renamed to angular.js -->
+    	<script src="/js/angular.js"></script>
+    	<script type="text/javascript" src="/js/promise-tracker.js"></script>
+	</head>
+	<body class="container">
+		<h1 align="center"> Give Back Selection </h1>
+		<p> 1. Have you received funding previously for this child from Their Opportunity? 
+		<div style="margin-left: 20px">   Yes  <input class="prevFunding" data-ng-click="showit=true" class="registered" type="radio" name="sexy" value="Yes"/>  No  <input class="prevFunding" data-ng-click="showit=false" class="registered" type="radio" name="sexy" value="No"/> 
+		</div>
+			<div data-ng-show="showit"> <br> <p> Please specify which funding request this is: <br> 
+			<div class="col-lg-3">
+				<div class="input-group">
+					<div class="input-group-btn">
+						<button type="button" id="requestNum" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> This is my ... <span class="caret"></span></button>
+							Select from below
+						  <ul id="request_ddm" class="dropdown-menu">
+							<li><a href="#">2nd funding request for this child</a></li> <!-- set some variables for yes/no and number -->
+							<li><a href="#">3nd funding request for this child</a></li>
+							<li><a href="#">4nd funding request for this child</a></li>
+						  </ul>
+					</div>
+				</div>
+			</div>
+			<br> <br>
+			<div class="input-group">
+			  <br> 
+			  <p> Please enter your full reference number: (G-XXXX)</p>
+			  <input id="refNum" style="margin-left: 20px" type="text" class="form-control"/>
+			
+			</div>
+			<br> 
+			  <div class="alert alert-warning" role="alert">If your child has not completed their give back, please <a href="http://www.theiropportunity.com/giveback/"> click here </a> to fill out the form. </div>
+		</div>
+<!-- 		<p> If yes has the child completed their Give Back?
+		<div class="col-lg-1">
+			<div class="input-group">
+				<span class="input-group-addon">
+			<input type="checkbox" aria-label="..."> Yes
+			<input type="checkbox" aria-label="..."> No (If no <a href="http://www.theiropportunity.com/the-give-back/">click here</a> for the give back form)
+			</div>
+		</div> -->
+		<br> 
+		<p> 2. If funding is approved, where would you like to give back? </p>
+		<div class="alert alert-info" role="alert">To assist your child in completing their give back, we have suggested local groups. If you wish to give back to one of these groups <a href="http://www.theiropportunity.com/apply-give-back/locations-durham/">click here</a>. </div>
+		<div class="col-lg-3">
+			<div class="input-group">
+			  <div class="input-group-btn">
+				<button type="button" class="btn btn-default dropdown-toggle" id="location" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Select a Location <span class="caret"></span></button>
+				<ul id="location_ddm" class="dropdown-menu">
+				  <li><a data-ng-click="show=false" href="#">Boys and Girls Club Durham</a></li>
+				  <li><a data-ng-click="show=false" href="#">Christian Horizons</a></li>
+				  <li><a data-ng-click="show=false" href="#">Community Hope Ministries</a></li>
+				  <li><a data-ng-click="show=false" href="#">Community Living of Oshawa/Clarington</a></li>
+				  <li><a data-ng-click="show=false" href="#">EVERGREEN</a></li>
+				  <li><a data-ng-click="show=false" href="#">Extendicare</a></li>
+				  <li><a data-ng-click="show=false" href="#">Faith Family Church Food Bank</a></li>
+				  <li><a data-ng-click="show=false" href="#">Habitat for Humanity Durham</a></li>
+				  <li><a data-ng-click="show=false" href="#">John Howard Society</a></li>
+				  <li><a data-ng-click="show=false" href="#">Whitby Rotary Club</a></li>
+				  <li><a data-ng-click="show=false" href="#">Kendalwood Seventh-Day Adventist Church</a></li>
+				  <li><a data-ng-click="show=false" href="#">Life Point Church</a></li>
+				  <li><a data-ng-click="show=false" href="#">Nova's Ark</a></li>
+				  <li><a data-ng-click="show=false" href="#">The Refuge</a></li>
+				  <li><a data-ng-click="show=false" href="#">The Salvation Army: Bowmanville Food Bank</a></li>
+				  <li><a data-ng-click="show=false" href="#">The Salvation Army - Ajax (Pickering)</a></li>
+				  <li><a data-ng-click="show=false" href="#">Seventh Day Adventist</a></li>
+				  <li><a data-ng-click="show=false" href="#">St. Vincent de Paul Society - St. Gertrude's (Oshawa)</a></li>
+				  <li><a data-ng-click="show=false" href="#">St. Vincent de Paul Society - St. Gregory's (Oshawa)</a></li>
+				  <li><a data-ng-click="show=false" href="#">St. Vincent's Kitchen (Durham Outlook for the Needy)</a></li>
+				  <li><a data-ng-click="show=false" href="#">Whitby Sunrise Rotary Club</a></li>
+				  <li><a data-ng-click="show=false" href="#">The Wynfield Retirement Residence (Chartwell)</a></li>
+				  <li><a data-ng-click="show=false" href="#">Their Opportunity</a></li>
+				  <li><a data-ng-click="show=false" href="#">United Way Durham: Volunteer Durham</a></li>
+				  <li><a data-ng-click="show=true" href="#">Other - Please Fill Below</a></li>
+				</ul>
+			  </div>
+			</div>
+		</div>
+		<br> <br> <br> <p data-ng-show="show" > Please fill in the Give Back organization information:
+			<div data-ng-show="show" class="input-group">
+			  <p> Please enter the organization name:
+			  <input id="orgName" type="text" class="form-control" aria-describedby="basic-addon1">
+			</div>
+			<br>
+			<div data-ng-show="show" class="input-group">
+			  <p> Please enter the organization contact name: 
+			  <input id="orgContact"type="text" class="form-control" aria-describedby="basic-addon1">
+			</div>
+			<br>
+			<div data-ng-show="show" class="input-group">
+			  <p> Please enter the organization contact number:
+			  <input id="orgNumber" type="text" class="form-control" aria-describedby="basic-addon1">
+			</div>
+			<br>
+			<div data-ng-show="show" class="input-group">
+			  <p> Please enter the organization contact email:
+			  <input id="orgEmail" type="text" class="form-control" aria-describedby="basic-addon1">
+			</div>
+		<div align="center">
+	  			<ul class="pagination">
+	    			<li><a href="#"> Child Info <span class="sr-only">(current)</span></a></li>
+	    			<li><a href="#"> Household Info <span class="sr-only">(current)</span></a></li>
+	    			<li ><a href="#"> Sport Registration <span class="sr-only">(current)</span></a></li>
+	    			<li class="active"><a href="#"> Give Back <span class="sr-only">(current)</span></a></li>
+	    			<li><a href="#"> Terms and Conditions <span class="sr-only">(current)</span></a></li>
+	  			</ul>
+		    </div>
+	 	<nav>
+	  		<ul class="pager">
+	   			<li class="previous"><a href="sports.html"><span aria-hidden="true">&larr;</span> Back </a></li>
+	    		<li class="next" id="nextPage"><a href="#">Next <span aria-hidden="true">&rarr;</span></a></li>
+	  		</ul>
+		</nav>
+	</body>
+	<script> 
+		$(function(){
+		    $("#location_ddm li a").click(function(){
+		    	$("#location").html($(this).text() + ' <span class="caret"></span>');
+		    	$("#location").val($(this).text());
+		   });
+		});
+		$(function(){
+		    $("#request_ddm li a").click(function(){
+		    	$("#requestNum").html($(this).text() + ' <span class="caret"></span>');
+		    	$("#requestNum").val($(this).text());
+		   });
+		});
+
+		function JSON2CSV(objArray) {
+		    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+
+		    var str = '';
+		    var line = '';
+
+		    if ($("#labels").is(':checked')) {
+		        var head = array[0];
+		        if ($("#quote").is(':checked')) {
+		            for (var index in array[0]) {
+		                var value = index + "";
+		                line += '"' + value.replace(/"/g, '""') + '",';
+		            }
+		        } else {
+		            for (var index in array[0]) {
+		                line += index + ',';
+		            }
+		        }
+
+		        line = line.slice(0, -1);
+		        str += line + '\r\n';
+		    }
+
+		    for (var i = 0; i < array.length; i++) {
+		        var line = '';
+
+		        if ($("#quote").is(':checked')) {
+		            for (var index in array[i]) {
+		                var value = array[i][index] + "";
+		                line += '"' + value.replace(/"/g, '""') + '",';
+		            }
+		        } else {
+		            for (var index in array[i]) {
+		                line += array[i][index] + ',';
+		            }
+		        }
+
+		        line = line.slice(0, -1);
+		        str += line + '\r\n';
+		    }
+		    return str;
+		    
+		}
+
+		$("#nextPage").click(function() {
+			var prevFunding = $(".prevFunding").val();
+			var prevRequestNum = $("#requestNum").val();
+			var refNum = $("#refNum").val();
+			var completedGB = $(".completedGB").val();
+		    var giveBackLocation = $("#location").val();
+		    var orgName = $("#orgName").val();
+		    var orgContact = $("#orgContact").val();
+		    var orgNumber = $("#orgNumber").val();
+		    var orgEmail = $("#orgEmail").val();
+
+		    var data_giveback = [
+		    	{field: "hasPrevFunding", value: prevFunding, required: "Yes"},
+		    	{field: "prevRequestNumber", value: prevRequestNum, required: "No"},
+		    	{field: "gNumber", value: refNum, required: "No"},
+		    	{field: "completedGiveBack", value: completedGB, required: "No"},
+		    	{field: "giveBackLocation", value: giveBackLocation, required: "Yes"},
+		    	{field: "orgName", value: orgName, required: "No"},
+		    	{field: "orgContact", value: orgContact, required: "No"},
+		    	{field: "orgNumber", value: orgNumber, required: "No"},
+		    	{field: "orgEmail", value: orgEmail, required: "No"}
+	    	]
+
+			if (prevFunding && giveBackLocation) {
+				var json_giveback = JSON.stringify(data_giveback);
+				console.log(json_giveback);
+				var data = JSON2CSV(json_giveback);
+				console.log(data);
+				localStorage.setItem("giveback", json_giveback);
+
+				window.location.href = "termsCond.html";
+			} else {
+				alert("Please enter all fields.");
+			}
+		});
+	</script> 
+</html>

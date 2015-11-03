@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Title -->
+		<title> Their Opportunity - Registration </title>
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
+		 <!-- Bootstrap CSS-->
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="/css/index.css" rel="stylesheet">
+        <!-- jQuery -->
+        <script src="/js/jquery-1.11.3.min.js"></script>
+
+    	<script type="text/javascript" src="/js/promise-tracker.js"></script>
+    	<!-- Bootstrap JS -->
+        <script src="/js/bootstrap.min.js"></script>
+	</head>
+	<body class="container">
+		<div class="jumbotron">
+			<div align="center">
+				<img src="/images/theirOpportunity.png" alt="Their Opportunity">
+			</div>
+			<h1 align="center"> Registration </h1>
+			<br>
+			<p> <strong> To qualify for funding please complete the following online form. </strong> </p>
+			<p> We will be asking for proof of income to make sure you qualify for our program.  The qualifying number is a total household income of $45,000 and less.  Documentation will be required.  Your 2014 Notice of Assessment is required.  When prompted in the application forms please attach this document.  
+			</p>
+			<p> <strong> Please Note: </strong> </p>
+			<p>
+				All scholarships are based on available funds. Please ensure you apply at least one moth prior to your sport/ recreation activity start date.
+				You must be registered with the sport or recreation activity organization you have chosen to be eligible for funding.
+				You must select a location to complete your Give Back in order to qualify for funding.
+			</p>
+			<p align="center"> <strong> To begin please select your area or location you would like funding for. </strong> </p>
+			<!-- Single button -->
+			<div align="center">
+				<div class="btn-group">
+					<button type="button" id="regionButton" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    	Select a Region <span class="caret"></span>
+				  	</button>
+				  	<ul class="dropdown-menu" >
+				    	<li text-align="center"><a href="#">Durham Region</a></li>
+				    	<li text-align="center"><a href="#">Greater Toronto Area</a></li>
+				    	<li text-align="center"><a href="#">Hamilton, Burlington, Niagara, St. Catharines</a></li>
+				    	<li text-align="center"><a href="#">Calgary Area</a></li>
+				  	</ul>
+				</div>
+				<br><br><br>
+				<div class="btn-group-lg">
+					<button type="button" id="startButton" onclick="storeRegion()" class="btn btn-default btn-large">
+						  Start!
+				  </button>
+			  	</div>
+			</div>
+		</div>
+	</body>
+
+	<script>
+		 $(function(){
+			    $(".dropdown-menu li a").click(function(){
+			    	$("#regionButton").html($(this).text() + ' <span class="caret"></span>');
+			    	$("#regionButton").val($(this).text());
+			   });
+			});
+
+      function storeRegion() {
+          var regionButton = $("#regionButton").val();
+
+          if (regionButton) {
+            // Store region data
+            var fundingRegion = $("#regionButton").val();
+
+            var funding_data = [{field: "fundingRegion", value: fundingRegion, required: "Yes"}];
+            var json_fundingRegion = JSON.stringify(funding_data);
+
+            localStorage.setItem("region", json_fundingRegion);
+
+            window.location.href = "child.html";
+          } else {
+            alert ("Please select a region.");
+          }
+      }
+	</script>
+</html>

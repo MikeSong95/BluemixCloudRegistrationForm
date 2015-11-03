@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html data-ng-app="myApp">
+	<head>
+		<!-- Title -->
+		<title> Their Opportunity - Registration </title>
+
+		<!-- Bootstrap CSS-->
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+             <link href="/css/index.css" rel="stylesheet">
+        <!-- jQuery -->
+        <script src="/js/jquery-1.11.3.min.js"></script>
+    	
+    	<!-- Bootstrap JS -->
+        <script src="/js/bootstrap.min.js"></script>
+
+		<script type="text/javascript" src="/js/angular.min.js"></script>
+
+        <!-- App.js renamed to angular.js -->
+        <script src="js/angular.js"></script>
+		<script type="text/javascript" src="/js/promise-tracker.js"></script>
+
+	</head>
+	<body>
+		<h1 align="center"> Household Information </h1>
+	
+
+		 <!-- <div class="col-lg-6 col-md-2">
+
+		     
+
+
+
+		  </div> -->
+
+<div class="container" >
+    
+   
+
+	<p> 1.  Parent or Guardian First name: </p> <input id="firstName" type="text" class="form-control" placeholder="Name"  /> <br>
+	<p>   2.  Parent or Guardian Last name:</p>  <input id="lastName" type="text" class="form-control" placeholder="Name"  /> <br>
+	<p>   3.  Are you a Single Parent?  </p> <div style="margin-left: 20px">   Yes <input  class="single" data-ng-click="showit=false" type="radio" name="sex" value="Yes" > No <input data-ng-click="showit=true" class="single" type="radio" name="sex" value="No" >  </div> 
+
+	    <div data-ng-show="showit"> <br> </div>	
+	    <div data-ng-show="showit"> Enter Other Guardian First Name: <input id="otherFirstName" type="text" class="form-control"> </div>
+	    <div data-ng-show="showit"> Enter Other Guardian Last  Name: <input id="otherLastName" type="text" class="form-control"> </div>
+	    <br>
+
+	    <div data-ng-show="showit==false"><p>    Do you receive Child support? </p>  <div style="margin-left: 20px">   Yes <input data-ng-click="support=false" type="radio" name="sexy" class="childSupport" value="Yes"  > No <input data-ng-click="support=true" type="radio" name="sexy" value="No" class="childSupport">  </div> <br> </div> 
+	    
+	    
+
+
+		
+	    <div data-ng-show="support==false && showit==false"> 
+	    <p> How much do you receive in input per month?  <input type="text" id="income" class="form-control" placeholder="$$"> 
+	    Pleas enter the amount from line 150 of your Notice of Assessment: <input id="noticeOfAssessment" type="text" class="form-control" placeholder="0.00">
+	    Please attach Notice of Assessment <br> <input type="file" name="Notice" accept="data/*">  </p> </div>
+
+
+	   
+    
+
+	    
+
+	    <p>    4. Home Phone Number:   <input placeholder="123 456 7890" id="numberMain" type="number" class="form-control"> </p> <br>
+
+
+	    <p>    5. Cell or Work Phone Number (Optional):   <input placeholder="123 456 7890" type="number" id="numberSecondary" class="form-control"> </p> <br>
+
+            <p>    6. Email:   <input placeholder="sample@example.com" type="text" id="email" class="form-control"> </p> <br>
+
+	    	<div align="center">
+  			<ul class="pagination">
+    			<li><a href="#"> Child Info <span class="sr-only">(current)</span></a></li>
+    			<li  class="active"><a href="#"> Household Info <span class="sr-only">(current)</span></a></li>
+    			<li><a href="#"> Sport Registration <span class="sr-only">(current)</span></a></li>
+    			<li><a href="#"> Give Back <span class="sr-only">(current)</span></a></li>
+    			<li><a href="#"> Terms and Conditions <span class="sr-only">(current)</span></a></li>
+  			</ul>
+		    </div>
+
+
+	 		<nav>
+	  		<ul class="pager">
+	   			<li class="previous"><a href="child.html"><span aria-hidden="true">&larr;</span> Back </a></li>
+	    		<li class="next" id="nextPage"><a href="#" id="nextButton">Next <span aria-hidden="true">&rarr;</span></a></li>
+	  		</ul>
+			</nav> 
+		    </div>
+			
+	</body>
+
+	<script>
+		function JSON2CSV(objArray) {
+		    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+
+		    var str = '';
+		    var line = '';
+
+		    if ($("#labels").is(':checked')) {
+		        var head = array[0];
+		        if ($("#quote").is(':checked')) {
+		            for (var index in array[0]) {
+		                var value = index + "";
+		                line += '"' + value.replace(/"/g, '""') + '",';
+		            }
+		        } else {
+		            for (var index in array[0]) {
+		                line += index + ',';
+		            }
+		        }
+
+		        line = line.slice(0, -1);
+		        str += line + '\r\n';
+		    }
+
+		    for (var i = 0; i < array.length; i++) {
+		        var line = '';
+
+		        if ($("#quote").is(':checked')) {
+		            for (var index in array[i]) {
+		                var value = array[i][index] + "";
+		                line += '"' + value.replace(/"/g, '""') + '",';
+		            }
+		        } else {
+		            for (var index in array[i]) {
+		                line += array[i][index] + ',';
+		            }
+		        }
+
+		        line = line.slice(0, -1);
+		        str += line + '\r\n';
+		    }
+		    return str;
+		}
+
+		$("#nextPage").click(function() {
+			var first = $("#firstName").val();
+			var last = $("#lastName").val();
+			var single = $(".single").val();
+
+			if (single === "No") {
+				var otherFirst = $("#otherFirstName").val();
+				var otherLast = $("#otherLastName").val();
+			} else {
+				var otherFirst = "None";
+				var otherLast = "None";
+				var childSupport = $(".childSupport").val();
+
+				if (childSupport === "Yes") {
+					var income = $("#income").val();
+					var noticeOfAssessment = $("#noticeOfAssessment").val();
+
+					var totalIncome = 12 * income + noticeOfAssessment;
+				} else {
+					var income = "0";
+					var noticeOfAssessment = "0";
+				}
+			}
+
+			if (totalIncome <= 45000) {
+				var number = $("#numberMain").val();
+				var numberSecondary = $("#numberSecondary").val();
+				var email = $("#email").val();
+
+				var data_household = [
+			    	{field: "parentFirstName", value: first, required: "Yes"},
+			    	{field: "parentLastName", value: last, required: "Yes"},
+			    	{field: "isSingle", value: single, required: "Yes"},
+			    	{field: "otherFirstName", value: otherFirst, required: "Yes"},
+			    	{field: "otherLastName", value: otherLast, required: "Yes"},
+			    	{field: "receivesChildSupp", value: childSupport, required: "Yes"},
+			    	{field: "childSuppAmount", value: income, required: "Yes"},
+			    	{field: "noticeOfAssessment", value: noticeOfAssessment, required: "Yes"},
+			    	{field: "mainNumber", value: number, required: "Yes"},
+			    	{field: "secondaryNumber", value: numberSecondary, required: "Yes"},
+			    	{field: "email", value: email, required: "Yes"},
+			    ]
+
+				if (first && last && single && childSupport && number && email) {
+					var json_householdData = JSON.stringify(data_household);
+					console.log(json_householdData);
+
+					var data = JSON2CSV(json_householdData);
+					console.log(data);
+
+					localStorage.setItem("household", json_householdData);
+					window.location.href = "sports.html";
+				} else {
+					alert("Please enter all fields.");
+				}
+			} else {
+				alert("You are not eligible for this program.");
+			}
+		});
+	</script>
+
+</html>

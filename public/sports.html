@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+	<html  data-ng-app="myApp">
+		<head>
+			<title> Their Opportunity - Registration </title>
+ 
+			<!-- Bootstrap CSS-->
+        	<link href="/css/bootstrap.min.css" rel="stylesheet">
+        	<link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+             <link href="/css/index.css" rel="stylesheet">
+        	<!-- jQuery -->
+        	<script src="/js/jquery-1.11.3.min.js"></script>
+    	
+    		<!-- Bootstrap JS -->
+        	<script src="/js/bootstrap.min.js"></script>
+
+			<script type="text/javascript" src="/js/angular.min.js"></script>
+			<!-- Load jQuery UI CSS  -->
+   			<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+   			<!-- Load jQuery UI Main JS  -->
+   			<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        	<!-- App.js renamed to angular.js -->
+        	<script src="js/angular.js"></script>
+        	<script type="text/javascript" src="/js/promise-tracker.js"></script>
+		</head>
+		<body class="container">
+			<script>
+				/*  jQuery ready function. Specify a function to execute when the DOM is fully loaded.  */
+				$(document).ready(
+  
+			  		/* This is the function that will get executed after the DOM is fully loaded */
+			  		function () {
+			    		$( ".datepicker" ).datepicker({
+			   				changeMonth: true,//this option for allowing user to select month
+			    			changeYear: true //this option for allowing user to select from year range
+			    		});
+			    	}
+			    );
+			 	$(document).ready(function() {
+				     $('input[type="submit"]').prop('disabled', true);
+				     $('input[type="text"]').keyup(function() {
+				        if($(this).val() != '') {
+				           $('input[type="submit"]').prop('disabled', false);
+				        }
+				     });
+				 });
+			</script>
+			<h1 align="center"> Sports Registration </h1>
+			
+			<p> 1.  Choose the sport category: </p> 
+			<div style="margin-left: 20px" class="btn-group">
+				<button type="button" id="sportCategory" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    	Select a Category <span class="caret"></span>
+			  	</button>
+			  	<ul class="dropdown-menu" >
+			    	<li text-align="center"><a href="#">Soccer</a></li>
+			    	<li text-align="center"><a href="#">Basketball</a></li>
+			    	<li text-align="center"><a href="#">Hockey</a></li>
+			    	<li text-align="center"><a href="#">Bocce</a></li>
+			  	</ul>
+			</div>
+			<br>
+			<br>
+			<p> 2. Name of Organization: </p>
+			<input id="orgName" style="margin-left: 20px"type="text" class="form-control">
+			<br>
+			<p> 3. Organization Address: </p>
+			<input id="orgAddress" style="margin-left: 20px" type="text" class="form-control">
+			<br>
+			<p> 4. Duration: </p>
+			<input id="duration" style="margin-left: 20px" placeholder="Weeks" type="number" class="form-control">
+			<br>
+			<p> 5. Organization Starting Date: </p>
+			<input id="start" style="margin-left: 20px" type="text" class="datepicker"/>
+			<br>
+			<br>
+			<p> 6. Organization Starting End: </p>
+			<input id="end" style="margin-left: 20px" type="text" class="datepicker"/>
+			<br>
+			<br>
+			<p> 7. Are you currently registered with your sport or club? </p>
+			<div style="margin-left: 20px">   Yes  <input data-ng-click="support=true" class="registered" type="radio" name="sexy" value="Yes"/>  No  <input data-ng-click="support=false" class="registered" type="radio" name="sexy" value="No"/> 
+				<br>
+				<br>
+			</div>
+			<div data-ng-show="support==false" class="alert alert-danger" role="alert"> Thank you for answering some preliminary quesitons. Please register with your sport or recreation activity organzation first and visit us again. </div>
+
+			<div data-ng-show="support==true"> 
+			<p> 8. Sport or recreation fee: </p>
+			<input name="fee" id="fee" placeholder="$" style="margin-left: 20px"type="number" class="form-control">	
+			<br>
+
+			<p> 9. Sport or recreation contact name: </p>
+			<input name="sportContact" id="contactName"  style="margin-left: 20px"type="text" class="form-control">	
+			<br>
+
+			<p> 10. Contact phone number:  </p>
+			<input placeholder="123 456 7890" name="sportContactNumber" id="contactNumber" style="margin-left: 20px"type="number" class="form-control">	
+			<br>
+
+			<p> 11. Contact E-mail </p>
+			<input placeholder="sample@example.com" id="contactEmail" name="sportContactEmail"  style="margin-left: 20px"type="text" class="form-control">	
+			<br>
+
+			</div>
+
+			<div align="center">
+	  			<ul class="pagination">
+	    			<li><a href="#"> Child Info <span class="sr-only">(current)</span></a></li>
+	    			<li><a href="#"> Household Info <span class="sr-only">(current)</span></a></li>
+	    			<li class="active"><a href="#"> Sport Registration <span class="sr-only">(current)</span></a></li>
+	    			<li><a href="#"> Give Back <span class="sr-only">(current)</span></a></li>
+	    			<li><a href="#"> Terms and Conditions <span class="sr-only">(current)</span></a></li>
+	  			</ul>
+		    </div>
+
+	 		<nav>
+		  		<ul class="pager">
+		   			<li class="previous"><a href="household.html"><span aria-hidden="true">&larr;</span> Back </a></li>
+		    		<li data-ng-hide="support==false" id="nextPage" class="next"><a href="#">Next <span aria-hidden="true">&rarr;</span></a></li>
+		  		</ul>
+			</nav>
+		</body>
+		<script>
+			$(function(){
+			    $(".dropdown-menu li a").click(function(){
+			    	$("#sportCategory").html($(this).text() + ' <span class="caret"></span>');
+			    	$("#sportCategory").val($(this).text());
+			   });
+			});
+
+			function JSON2CSV(objArray) {
+			    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+
+			    var str = '';
+			    var line = '';
+
+			    if ($("#labels").is(':checked')) {
+			        var head = array[0];
+			        if ($("#quote").is(':checked')) {
+			            for (var index in array[0]) {
+			                var value = index + "";
+			                line += '"' + value.replace(/"/g, '""') + '",';
+			            }
+			        } else {
+			            for (var index in array[0]) {
+			                line += index + ',';
+			            }
+			        }
+
+			        line = line.slice(0, -1);
+			        str += line + '\r\n';
+			    }
+
+			    for (var i = 0; i < array.length; i++) {
+			        var line = '';
+
+			        if ($("#quote").is(':checked')) {
+			            for (var index in array[i]) {
+			                var value = array[i][index] + "";
+			                line += '"' + value.replace(/"/g, '""') + '",';
+			            }
+			        } else {
+			            for (var index in array[i]) {
+			                line += array[i][index] + ',';
+			            }
+			        }
+
+			        line = line.slice(0, -1);
+			        str += line + '\r\n';
+			    }
+			    return str;
+			}
+
+			$("#nextPage").click(function() {
+				var category = $("#sportCategory").val();
+				var orgName = $("#orgName").val();
+				var orgAddress = $("#orgAddress").val();
+				var duration = $("#duration").val();
+			    var startDate = $("#start").val();
+			    var endDate = $("#end").val();
+			    var registered = $(".registered").val();
+			    var fee = $("#fee").val();
+			    var contactName = $("#contactName").val();
+			    var contactNumber = $("#contactNumber").val();
+				var contactEmail = $("#contactEmail").val();
+
+				var data_sports = [
+			    	{field: "sportIndustry", value: category, required: "Yes"},
+			    	{field: "organizationName", value: orgName, required: "Yes"},
+			    	{field: "organizationAddress", value: orgAddress, required: "Yes"},
+			    	{field: "sportDuration", value: duration, required: "Yes"},
+			    	{field: "sportStartDate", value: startDate, required: "Yes"},
+			    	{field: "sportEndDate", value: endDate, required: "Yes"},
+			    	{field: "isRegistered", value: registered, required: "Yes"},
+			    	{field: "sportFee", value: fee, required: "Yes"},
+			    	{field: "sportContactName", value: contactName, required: "Yes"},
+			    	{field: "sportContactNumber", value: contactNumber, required: "Yes"},
+			    	{field: "sportContactEmail", value: contactEmail, required: "Yes"}
+		    	]
+
+				if (category && orgName && orgAddress && duration && startDate && endDate && registered && fee && contactName && contactNumber && contactEmail) {
+					var json_sportsData = JSON.stringify(data_sports);
+					console.log(json_sportsData);
+					var data = JSON2CSV(json_sportsData);
+					console.log(data);
+					localStorage.setItem("sports", json_sportsData);
+					window.location.href = "giveback.html";
+				} else {
+					alert("Please enter all fields.");
+				}
+			});
+		</script>
+	</html>
